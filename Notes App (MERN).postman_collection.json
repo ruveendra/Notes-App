@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "7cbe2499-e74b-46b0-8631-ffc65cf17f8c",
+		"name": "Notes App (MERN)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19756816"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"User 01\",\r\n    \"email\": \"example@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"example@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authentication Check",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWY3MjZlNGJhODE1ZThiODQyMmQ2MyIsIm5hbWUiOiJVc2VyIDAxIiwiaWF0IjoxNjU5ODYxNzY2LCJleHAiOjE2NTk5NDgxNjZ9.oh42han7UOCXlg954_dpG4SyCgbokIIzqJWXk0Gxz48",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/users/verify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Notes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWY3MjZlNGJhODE1ZThiODQyMmQ2MyIsIm5hbWUiOiJVc2VyIDAxIiwiaWF0IjoxNjU5ODYxNzY2LCJleHAiOjE2NTk5NDgxNjZ9.oh42han7UOCXlg954_dpG4SyCgbokIIzqJWXk0Gxz48",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/notes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Note",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWY3MjZlNGJhODE1ZThiODQyMmQ2MyIsIm5hbWUiOiJVc2VyIDAxIiwiaWF0IjoxNjU5ODYxNzY2LCJleHAiOjE2NTk5NDgxNjZ9.oh42han7UOCXlg954_dpG4SyCgbokIIzqJWXk0Gxz48",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Note 2\",\r\n    \"content\": \"Content test\",\r\n    \"date\": \"July 8 2022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/notes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Note",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWY3MjZlNGJhODE1ZThiODQyMmQ2MyIsIm5hbWUiOiJVc2VyIDAxIiwiaWF0IjoxNjU5ODYxNzY2LCJleHAiOjE2NTk5NDgxNjZ9.oh42han7UOCXlg954_dpG4SyCgbokIIzqJWXk0Gxz48",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:5000/api/notes/62ef8b3a07e3d52fa6576de2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"notes",
+						"62ef8b3a07e3d52fa6576de2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Notes",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWY3MjZlNGJhODE1ZThiODQyMmQ2MyIsIm5hbWUiOiJVc2VyIDAxIiwiaWF0IjoxNjU5ODYxNzY2LCJleHAiOjE2NTk5NDgxNjZ9.oh42han7UOCXlg954_dpG4SyCgbokIIzqJWXk0Gxz48",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Note 1\",\r\n    \"content\": \"Welcome to Notes\",\r\n    \"date\": \"July 8 2022\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/notes/62ef8a32b52237de16e2d115",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"notes",
+						"62ef8a32b52237de16e2d115"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
