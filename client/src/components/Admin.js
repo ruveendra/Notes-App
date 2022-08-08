@@ -14,6 +14,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
         <Routes>
           <Route path="/" element={<AdminHome />} exact />
           <Route path="/users/register" element={<RegisterUser />} exact />
+          {/* <Route path="/edit/:id" element={<RegisterUser />} exact /> */}
           {/* <Route path="/edit/:id" element={<EditNote />} exact /> */}
         </Routes>
     </div>
