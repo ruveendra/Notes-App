@@ -15,9 +15,40 @@ const userCtrl = {
         username: username,
         email: email,
         password: passwordHash,
+        status:true
       });
       await newUser.save();
       res.json({ msg: "Sign up Success" });
+
+      //res.json({ passwordHash });
+    } catch (error) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  updateUser: async (req, res) => {
+    try {
+      const { firstName, lastName, dob, mobile, password } = req.body;
+      const passwordHash = await bcrypt.hash(password, 10);
+      console.log(firstName,lastName,dob,mobile,password)
+      // const user = await Users.findOne({ email: email });
+      // if (user)
+      //   return res.status(400).json({ msg: "The email already exists." });
+      await Users.findOneAndUpdate(
+        { user_id: req.user.id },
+        {
+          firstName,
+          lastName,
+          dob,
+          mobile,
+          passwordHash,
+          status:false
+        }
+      );
+
+      //const passwordHash = await bcrypt.hash(password, 10);
+      
+      res.json({ msg: "Update up Success" });
 
       //res.json({ passwordHash });
     } catch (error) {
@@ -33,11 +64,12 @@ const userCtrl = {
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) return res.status(400).json({ msg: "Incorrect password." });
 
-      const payload = { id: user._id, name: user.username };
+      const payload = { id: user._id, name: user.username, status:user.status };
+      
       const token = jwt.sign(payload, process.env.TOKEN_SECRET, {
         expiresIn: "1d",
       });
-      res.json({ token });
+      res.json({ token,payload });
       //res.json({ msg: "Login User" });
     } catch (error) {
       return res.status(500).json({ msg: err.message });

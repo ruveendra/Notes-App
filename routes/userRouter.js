@@ -6,7 +6,10 @@ const auth = require("../middleware/auth");
 router.post("/register", userCtrl.registerUser);
 //Login User
 router.post("/login", userCtrl.loginUser);
+//Update User
+router.put("/update",auth, userCtrl.updateUser);
 //Verify token
 router.get("/verify", userCtrl.verifiedToken);
+
 
 module.exports = router;
