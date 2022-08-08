@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Login from "./components/Login";
 import Notes from "./components/Notes";
+import Admin from "./components/Admin";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() =>{
     const checkLogin = async () =>{
@@ -25,9 +27,12 @@ function App() {
   
   return (
     <div className="App">
-      {isLogin ? <Notes setIsLogin={setIsLogin}/> : <Login setIsLogin={setIsLogin}/>}
+      {isLogin && isAdmin == false ? <Notes setIsLogin={setIsLogin} /> : isLogin && isAdmin  ? <Admin setIsLogin={setIsLogin} setIsAdmin={setIsAdmin} />: <Login setIsLogin={setIsLogin} setIsAdmin={setIsAdmin}/>}
+      
       
     </div>
+
+    
   );
 }
 

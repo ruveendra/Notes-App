@@ -19,9 +19,10 @@ const userCtrl = {
         lastName: "default",
         dob: "1900-01-01",
         mobile: "default",
+        accountType: "student",
       });
       await newUser.save();
-      res.json({ msg: "Sign up Success" });
+      res.json({ msg: "User successfully registered" });
       //res.json({ passwordHash });
     } catch (error) {
       return res.status(500).json({ msg: err.message });
@@ -64,6 +65,7 @@ const userCtrl = {
         id: user._id,
         name: user.username,
         status: user.status,
+        accountType: user.accountType,
       };
 
       const token = jwt.sign(payload, process.env.TOKEN_SECRET, {

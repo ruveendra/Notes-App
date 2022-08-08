@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function Login({ setIsLogin }) {
+function Login({ setIsLogin, setIsAdmin }) {
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -55,9 +55,16 @@ function Login({ setIsLogin }) {
       });
       setUser({ name: "", email: "", password: "" });
       localStorage.setItem("tokenStore", res.data.token);
-      if (res.data.payload.status) {
+      if (res.data.payload.status && res.data.payload.accountType === "student" ) {
         setOnLogin(true);
-      } else {
+      } 
+      else if (res.data.payload.status==false && res.data.payload.accountType === "admin"){
+        setIsAdmin(true);
+        setIsLogin(true);
+      }
+      
+      else {
+        
         setIsLogin(true);
       }
     } catch (err) {

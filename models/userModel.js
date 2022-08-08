@@ -30,6 +30,12 @@ const userSchema = new mongoose.Schema(
       required: true,
       
     },
+    accountType: {
+      type: String,
+      required: true,
+      
+    },
+
     status: {
       type: Boolean,
       required: true,
