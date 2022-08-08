@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
     const logoutSubmit = () =>{
         localStorage.clear()
         
-        setIsLogin(false)//Not Working
+        setIsLogin(false)
     }
 
     return (

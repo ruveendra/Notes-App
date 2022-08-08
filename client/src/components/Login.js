@@ -8,38 +8,38 @@ function Login({ setIsLogin }) {
     dob: "",
     mobile: "",
     password: "",
+    newPassword:"",
     email: "",
+
   });
   const [err, setErr] = useState("");
-
   const onChangeInput = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-    setErr("");
+  const { name, value } = e.target;
+  setUser({ ...user, [name]: value });
+  setErr("");
   };
 
-  const registerSubmit = async (e) => {
+  const logoutSubmit = () =>{
+    localStorage.clear()
+    setIsLogin(false)
+}
+  const updateAccountSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const token = localStorage.getItem("tokenStore");
       if (token) {
-        const {firstName, lastName, dob,mobile,password,} = user;
+        const {firstName, lastName, dob, mobile, newPassword} = user;
         const updateUser = {
-            firstName, lastName, dob,mobile,password
+            firstName, lastName, dob, mobile, newPassword
         }
         console.log(updateUser)
         const res = await axios.put("/users/update",updateUser, {
           headers: {Authorization: token},
-        //   firstName: user.firstName,
-        //   lastName: user.lastName,
-        //   dob: user.dob,
-        //   mobile: user.mobile,
-        //   password: user.password,
-        //   status: false,
         });
-        setUser({ firstName: "", lastName: "", dob: "", mobile: "",password: "" });
         setErr(res.data.msg);
+        logoutSubmit();
+        setOnLogin(false);
+        setUser({ firstName: "", lastName: "", dob: "",newPassword:""}); //set timer
       }
     } catch (err) {
       err.response.data.msg && setErr(err.response.data.msg);
@@ -107,7 +107,7 @@ function Login({ setIsLogin }) {
       </div>
       <div className="register create-note" style={style}>
         <h2>Enter Your Information</h2>
-        <form onSubmit={registerSubmit}>
+        <form onSubmit={updateAccountSubmit}>
           <input
             type="text"
             name="firstName"
@@ -148,11 +148,11 @@ function Login({ setIsLogin }) {
 
           <input
             type="password"
-            name="password"
+            name="newPassword"
             id="register-password"
             placeholder="New Password"
             required
-            value={user.password}
+            value={user.newPassword}
             autoComplete="true"
             onChange={onChangeInput}
           />

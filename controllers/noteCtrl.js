@@ -21,7 +21,7 @@ const noteCtrl = {
         content,
         date,
         user_id: req.user.id,
-        name: req.user.name,
+        
       });
       await newNote.save();
       //res.json(newNote);
