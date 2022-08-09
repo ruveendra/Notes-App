@@ -4,11 +4,12 @@ import { format } from "timeago.js";
 import axios from "axios";
 import ModalContent from "./UserDetails";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, } from "react-bootstrap";
 
 function AdminHome() {
   const [users, setUsers] = useState([]);
   const [token, setToken] = useState("");
+  const [search, setSearch] = useState("");
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -20,6 +21,43 @@ function AdminHome() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
+
+  const onChangeInput = async (e) => {
+    const {  value } = e.target;
+    if (value===""){
+      getUsers(token);
+    }
+    const searchTerm = value
+    console.log(value);
+    setSearch(value);
+    filterContent(searchTerm)
+    // setErr("");
+    };
+
+    function filterContent(searchTerm) {
+      // console.log(users)
+      console.log(search)
+      const result = users.filter((user)=>{
+       return  (user.email?.toLowerCase().trim()).includes(searchTerm) 
+      //  console.log(user.email?.toLowerCase().includes(search) )
+    })
+      // const result = users
+      // .map((user)=>(
+      //   console.log(user)
+      // ))
+      setUsers(result);
+    }
+
+    // handleTextSearch = (e) => {
+    //   const searchTerm = e.currentTarget.value;
+    //   axios.get("/posts").then((res) => {
+    //     if (res.data.success) {
+    //       this.filterContent(res.data.posts, searchTerm);
+    //     }
+    //   });
+    // };
+      
 
   const getUsers = async (token) => {
     const res = await axios.get("/users", {
@@ -45,41 +83,55 @@ function AdminHome() {
       mobile: mobile,
     });
     handleShow();
-    console.log(show)
+    console.log(show);
     console.log(user.firstName);
   };
 
   const ModalContent = () => {
     return (
       <>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Student Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h4>First Name: {user.firstName}</h4>
-          <h4>Last Name: {user.lastName}</h4>
-          <h4>Email: {user.email}</h4>
-          <h4>Date of Birth: {user.dob}</h4>
-          <h4>Mobile: {user.mobile}</h4>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          {/* <Button variant="primary" onClick={handleClose}>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Student Details</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>First Name: {user.firstName}</h4>
+            <h4>Last Name: {user.lastName}</h4>
+            <h4>Email: {user.email}</h4>
+            <h4>Date of Birth: {user.dob}</h4>
+            <h4>Mobile: {user.mobile}</h4>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            {/* <Button variant="primary" onClick={handleClose}>
             Save Changes
           </Button> */}
-        </Modal.Footer>
-      </Modal>
-    </>
+          </Modal.Footer>
+        </Modal>
+      </>
     );
   };
 
   return (
-    
     <div>
-     
+      
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          name="search"
+          placeholder="Search"
+          aria-label="Search"
+          onChange={onChangeInput}
+          
+        />
+        <button class="btn btn-outline-success" type="submit">
+          Search
+        </button>
+      </form>
+
       <table class="content-table">
         <thead>
           <tr>
@@ -92,19 +144,19 @@ function AdminHome() {
         <tbody>
           {users.map((user) => (
             <tr class="active-row">
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.email}</td>
+              <td>{user?.firstName}</td>
+              <td>{user?.lastName}</td>
+              <td>{user?.email}</td>
               <td>
                 <button
                   type="button"
                   onClick={() =>
                     getDetails(
-                      user.firstName,
-                      user.LastName,
-                      user.email,
-                      user.dob,
-                      user.mobile
+                      user?.firstName,
+                      user?.lastName,
+                      user?.email,
+                      user?.dob,
+                      user?.mobile
                     )
                   }
                   class="btn btn-secondary btn-sm"
@@ -134,10 +186,7 @@ function AdminHome() {
   </tr> */}
         </tbody>
       </table>
-      {show ? <ModalContent/> : null}
-      
-     
-      
+      {show ? <ModalContent /> : null}
     </div>
   );
 }
