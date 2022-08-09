@@ -33,7 +33,6 @@ const userSchema = new mongoose.Schema(
     accountType: {
       type: String,
       required: true,
-      
     },
 
     status: {

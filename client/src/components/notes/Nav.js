@@ -12,7 +12,7 @@ import {Link} from 'react-router-dom'
     return (
         <header>
             <div className="logo">
-                <h1><Link to="/">Dev Notes</Link></h1>
+                <h1><Link to="/">Notes App</Link></h1>
             </div>
             <ul>
                 <li><Link to="/">Home</Link></li>

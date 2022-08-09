@@ -26,27 +26,50 @@ import axios from 'axios';
         }
     }
   return (
-    
-    
-    <section className="login-page">
-    <div className="register create-note" >
-    <h2>Register User</h2>
-         <form onSubmit={registerSubmit}>
-            
-             <input type="email" name="email" id="register-email"
-             placeholder="Email" required value={user.email}
-             onChange={onChangeInput} />
 
-             <input type="password" name="password" id="register-password"
-             placeholder="Password" required value={user.password}
-             autoComplete="true" onChange={onChangeInput} />
-
-             <button type="submit">Register</button>
-             
-             <h3>{err}</h3>
-         </form>
+    
+    <div class="center">
+      <h2>Register Student</h2>
+      <form onSubmit={registerSubmit}>
+        <div class="txt_field"  >
+          <input type="email" required name="email" id="login-email"  value={user.email} onChange={onChangeInput}/>
+          <span></span>
+          <label>Email</label>
+        </div>
+        <div class="txt_field">
+          <input type="password"  name="password" id="login-password" required value={user.password} autoComplete="true" onChange={onChangeInput}/>
+          <span></span>
+          <label>Password</label>
+        </div>
+        {/* <div class="pass">Forgot Password?</div> */}
+        <h5>{err}</h5>
+        <input type="submit" value="Register"/>
+        {/* <div class="signup_link">
+          Not a member? <a href="#">Signup</a>
+        </div> */}
+      </form>
     </div>
-</section>
+    
+    
+//     <section className="login-page">
+//     <div className="register create-note" >
+//     <h2>Register User</h2>
+//          <form onSubmit={registerSubmit}>
+            
+//              <input type="email" name="email" id="register-email"
+//              placeholder="Email" required value={user.email}
+//              onChange={onChangeInput} />
+
+//              <input type="password" name="password" id="register-password"
+//              placeholder="Password" required value={user.password}
+//              autoComplete="true" onChange={onChangeInput} />
+
+//              <button type="submit">Register</button>
+             
+//              <h3>{err}</h3>
+//          </form>
+//     </div>
+// </section>
     
   );
 }

@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import {useNavigate } from 'react-router-dom'
 
-function CreateNote() {
+function CreateNote({setIsLogin}) {
 
     const [note, setNote] = useState({
         title: '',
@@ -23,6 +23,7 @@ function CreateNote() {
         try {
             const token = localStorage.getItem('tokenStore')
             if(token){
+                setIsLogin(true)
                 const {title, content, date} = note;
                 const newNote = {
                     title, content, date
@@ -41,6 +42,39 @@ function CreateNote() {
     
 
     return (
+    //     <div class="center">
+    //   <h2>Create Note</h2>
+    //   <form onSubmit={createNote} autoComplete="off">
+    //     <div class="txt_field"  >
+    //        {/* <label htmlFor="title">Title</label> */}
+    //       <input type="text" required name="title" id="title"  value={note.title} onChange={onChangeInput}/>
+    //       <span></span>
+    //       <label>Title</label>
+    //     </div>
+        
+        
+    //     <div class="txt_field">
+    //     {/* <label htmlFor="title">Content</label> */}
+    //       <input type="text"  name="content" id="content" required value={note.content} autoComplete="true" onChange={onChangeInput} rows="10"/>
+    //       <span></span>
+    //       <label>Content</label>
+    //     </div>
+
+    //     <div class="txt_field"  >
+    //        {/* <label htmlFor="title">Date</label> */}
+    //       <input type="date" id="date" name="date" onChange={onChangeInput} value={note.date} />
+    //       <span></span>
+    //       <label>Date</label>
+    //     </div>
+
+    //     {/* <div class="pass">Forgot Password?</div> */}
+    //     <input type="submit" value="Save"/>
+    //     {/* <div class="signup_link">
+    //       Not a member? <a href="#">Signup</a>
+    //     </div> */}
+    //   </form>
+    // </div>
+
         <div className="create-note">
             <h2>Create Note</h2>
             <form onSubmit={createNote} autoComplete="off">
@@ -52,7 +86,7 @@ function CreateNote() {
 
                 <div className="row">
                     <label htmlFor="content">Content</label>
-                    <textarea type="text" value={note.content} id="content"
+                    <textarea type="text" value={note.content} id="content" /////////////
                     name="content" required rows="10" onChange={onChangeInput} />
                 </div>
 

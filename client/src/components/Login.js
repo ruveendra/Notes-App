@@ -13,6 +13,7 @@ function Login({ setIsLogin, setIsAdmin }) {
 
   });
   const [err, setErr] = useState("");
+  
   const onChangeInput = (e) => {
   const { name, value } = e.target;
   setUser({ ...user, [name]: value });
@@ -64,6 +65,8 @@ function Login({ setIsLogin, setIsAdmin }) {
       }
       
       else {
+        console.log(res.data.payload.status)
+        console.log(res.data.payload.accountType)
         
         setIsLogin(true);
       }
@@ -80,98 +83,66 @@ function Login({ setIsLogin, setIsAdmin }) {
 
   return (
     <section className="login-page">
-      <div className="login create-note">
-        <h2>Login</h2>
-        <form onSubmit={loginSubmit}>
-          <input
-            type="email"
-            name="email"
-            id="login-email"
-            placeholder="Email"
-            required
-            value={user.email}
-            onChange={onChangeInput}
-          />
 
-          <input
-            type="password"
-            name="password"
-            id="login-password"
-            placeholder="Password"
-            required
-            value={user.password}
-            autoComplete="true"
-            onChange={onChangeInput}
-          />
+<div class="center">
+      <h1>Login</h1>
+      <form onSubmit={loginSubmit}>
+        <div class="txt_field"  >
+          <input type="email" required name="email" id="login-email"  value={user.email} onChange={onChangeInput}/>
+          <span></span>
+          <label>Email</label>
+        </div>
+        <div class="txt_field">
+          <input type="password"  name="password" id="login-password" required value={user.password} autoComplete="true" onChange={onChangeInput}/>
+          <span></span>
+          <label>Password</label>
+        </div>
+        
+        <h5>{err}</h5>
+        <input type="submit" value="Login"/>
+        
+      </form>
+    </div>
 
-          <button type="submit">Login</button>
-          <p>
-            You don't have an account?
-            <span onClick={() => setOnLogin(true)}> Register Now</span>
-          </p>
-          <h3>{err}</h3>
-        </form>
-      </div>
-      <div className="register create-note" style={style}>
-        <h2>Enter Your Information</h2>
-        <form onSubmit={updateAccountSubmit}>
-          <input
-            type="text"
-            name="firstName"
-            id="First-name"
-            placeholder="First Name"
-            required
-            value={user.firstName}
-            onChange={onChangeInput}
-          />
+      
 
-          <input
-            type="text"
-            name="lastName"
-            id="Last-name"
-            placeholder="Last Name"
-            required
-            value={user.lastName}
-            onChange={onChangeInput}
-          />
-
-          <input
-            type="date"
-            id="date"
-            name="dob"
-            onChange={onChangeInput}
-            value={user.dob}
-          />
-
-          <input
-            type="text"
-            name="mobile"
-            id="mobile"
-            placeholder="Mobile"
-            required
-            value={user.mobile}
-            onChange={onChangeInput}
-          />
-
-          <input
-            type="password"
-            name="newPassword"
-            id="register-password"
-            placeholder="New Password"
-            required
-            value={user.newPassword}
-            autoComplete="true"
-            onChange={onChangeInput}
-          />
-
-          <button type="submit">Save</button>
-          <p>
-            Get started by entering your account details.
-            {/* <span onClick={() => setOnLogin(false)}> Login Now</span> */}
-          </p>
-          <h3>{err}</h3>
-        </form>
-      </div>
+<div class="center" style={style}>
+      <h4>Enter Your Information</h4>
+      <form onSubmit={updateAccountSubmit}>
+        <div class="txt_field"  >
+          <input type="text" name="firstName" id="First-name" value={user.firstName} onChange={onChangeInput} required/>
+          <span></span>
+          <label>First Name</label>
+        </div>
+        <div class="txt_field"  >
+          <input type="text" name="lastName" id="Last-name" value={user.lastName} onChange={onChangeInput} required/>
+          <span></span>
+          <label>Last Name</label>
+        </div>
+        <div class="txt_field"  >
+          <input type="date" required id="date" name="dob"  value={user.dob} onChange={onChangeInput} />
+          <span></span>
+          <label>Date of Birth</label>
+        </div>
+        <div class="txt_field"  >
+          <input type="number" required name="mobile" id="mobile"  value={user.mobile} onChange={onChangeInput} maxlength="10" />
+          <span></span>
+          <label>Mobile</label>
+        </div>
+        
+        <div class="txt_field">
+          <input type="password"  name="newPassword" id="register-password" required value={user.newPassword} autoComplete="true" onChange={onChangeInput}/>
+          <span></span>
+          <label>Enter New Password</label>
+        </div>
+        {/* <div class="pass">Forgot Password?</div> */}
+        <h5>{err}</h5>
+        <input type="submit" value="Save"/>
+        <div class="signup_link">
+          Not a member? <a href="#">Signup</a>
+        </div>
+      </form>
+    </div>
     </section>
   );
 }

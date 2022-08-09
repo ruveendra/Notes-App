@@ -27,7 +27,7 @@ function App() {
   
   return (
     <div className="App">
-      {isLogin && isAdmin == false ? <Notes setIsLogin={setIsLogin} /> : isLogin && isAdmin  ? <Admin setIsLogin={setIsLogin} setIsAdmin={setIsAdmin} />: <Login setIsLogin={setIsLogin} setIsAdmin={setIsAdmin}/>}
+      {isLogin && isAdmin === false ? <Notes setIsLogin={setIsLogin} /> : isLogin && isAdmin  ? <Admin setIsLogin={setIsLogin} setIsAdmin={setIsAdmin} />: <Login setIsLogin={setIsLogin} setIsAdmin={setIsAdmin}/>}
       
       
     </div>

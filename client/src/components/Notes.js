@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
         <Header setIsLogin={setIsLogin}/>
           <Routes>
             <Route path="/" element={<Home />} exact />
-            <Route path="/create" element={<CreateNote />} exact />
+            <Route path="/create" element={<CreateNote setIsLogin={setIsLogin} />} exact />
             <Route path="/edit/:id" element={<EditNote />} exact />
           </Routes>
       </div>

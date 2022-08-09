@@ -4,11 +4,13 @@ import { format } from "timeago.js";
 import axios from "axios";
 import ModalContent from "./UserDetails";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { Modal, Button, } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 
 function AdminHome() {
   const [users, setUsers] = useState([]);
+  const [indents, setindents] = useState([]);
   const [token, setToken] = useState("");
+  const [pages, setPages] = useState();
   const [search, setSearch] = useState("");
   const [user, setUser] = useState({
     firstName: "",
@@ -19,58 +21,89 @@ function AdminHome() {
   });
   const [showModal, setShowModal] = useState(false);
   const [show, setShow] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+
 
   const onChangeInput = async (e) => {
-    const {  value } = e.target;
-    if (value===""){
+    const { value } = e.target;
+    if (value === "") {
       getUsers(token);
     }
-    const searchTerm = value
+    const searchTerm = value;
     console.log(value);
     setSearch(value);
-    filterContent(searchTerm)
+    filterContent(searchTerm);
     // setErr("");
-    };
+  };
 
-    function filterContent(searchTerm) {
-      // console.log(users)
-      console.log(search)
-      const result = users.filter((user)=>{
-       return  (user.email?.toLowerCase().trim()).includes(searchTerm) 
+  function filterContent(searchTerm) {
+    // console.log(users)
+    console.log(search);
+    const result = users.filter((user) => {
+      return user.email?.toLowerCase().trim().includes(searchTerm);
       //  console.log(user.email?.toLowerCase().includes(search) )
-    })
-      // const result = users
-      // .map((user)=>(
-      //   console.log(user)
-      // ))
-      setUsers(result);
+    });
+    // const result = users
+    // .map((user)=>(
+    //   console.log(user)
+    // ))
+    setUsers(result);
+  }
+  const nextPage = async () => {
+    if (currentPage > pages){
+      setCurrentPage(currentPage-1);
+      getUsers(token);
+    }
+    else{
+      setCurrentPage(currentPage+1);
+      getUsers(token);
+
     }
 
-    // handleTextSearch = (e) => {
-    //   const searchTerm = e.currentTarget.value;
-    //   axios.get("/posts").then((res) => {
-    //     if (res.data.success) {
-    //       this.filterContent(res.data.posts, searchTerm);
-    //     }
-    //   });
-    // };
-      
+  };
+
+  const previousPage = async () => {
+
+    if (currentPage < 1){
+      setCurrentPage(1);
+      getUsers(token);
+    }
+    else{
+      setCurrentPage(currentPage-1);
+      getUsers(token);
+
+    }
+
+  };
+
+  // function updatePage (){
+    
+  //   setCurrentPage(i);
+  //   getUsers();
+  // }; 
+    
+    
+  
 
   const getUsers = async (token) => {
-    const res = await axios.get("/users", {
+    const res = await axios.get(`/users/?page=${currentPage}&limit=5`, {
       headers: { Authorization: token },
     });
-    setUsers(res.data);
+    setPages(res.data.pageCount);
+    setUsers(res.data.results);
+    
+    
   };
 
   useEffect(() => {
+    const num = 1
     const token = localStorage.getItem("tokenStore");
     setToken(token);
     if (token) {
-      getUsers(token);
+      
+      getUsers(num,token);
     }
   }, []);
 
@@ -86,7 +119,7 @@ function AdminHome() {
     console.log(show);
     console.log(user.firstName);
   };
-
+  
   const ModalContent = () => {
     return (
       <>
@@ -114,9 +147,24 @@ function AdminHome() {
     );
   };
 
+  const Pagination = async () => {
+    
+    for (var i = 0; i <= pages; i++) {
+      indents.push(
+        i
+      )
+      console.log(indents)
+      // indents.push(
+      //   <button type="button" class="page-btn" onClick ={()=>getUsers(i,token)} >
+      //     {i+1}
+      //   </button>
+      // );
+    }
+    
+  };
+
   return (
     <div>
-      
       <form class="d-flex" role="search">
         <input
           class="form-control me-2"
@@ -125,7 +173,6 @@ function AdminHome() {
           placeholder="Search"
           aria-label="Search"
           onChange={onChangeInput}
-          
         />
         <button class="btn btn-outline-success" type="submit">
           Search
@@ -166,29 +213,23 @@ function AdminHome() {
               </td>
             </tr>
           ))}
-          {/* <tr>
-    <td>1</td>
-    <td>Domenic</td>
-    <td>88,110</td>
-    <td>dcode</td>
-  </tr>
-  <tr class="active-row">
-    <td>2</td>
-    <td>Sally</td>
-    <td>72,400</td>
-    <td>Students</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Nick</td>
-    <td>52,300</td>
-    <td>dcode</td>
-  </tr> */}
         </tbody>
       </table>
       {show ? <ModalContent /> : null}
+      <button type="button" class="page-btn next-page" onClick ={()=>previousPage()}>previous</button>
+      <div>
+        {/* {indents.map((j)=>(
+        <button type="button" class="page-btn"  >
+          {j+1}
+        </button>
+
+
+        ))} */}
+      </div>
+      <button type="button" class="page-btn next-page" onClick ={()=>nextPage()}>next</button>
     </div>
   );
 }
 
 export default AdminHome;
+// 
