@@ -75,28 +75,31 @@ function CreateNote({setIsLogin}) {
     //   </form>
     // </div>
 
-        <div className="create-note">
+        <div className="center">
             <h2>Create Note</h2>
             <form onSubmit={createNote} autoComplete="off">
-                <div className="row">
-                    <label htmlFor="title">Title</label>
+                <div className="txt_field">
+                    
                     <input type="text" value={note.title} id="title"
                     name="title" required onChange={onChangeInput} />
+                    <label >Title</label>
                 </div>
 
                 <div className="row">
-                    <label htmlFor="content">Content</label>
+                    <div className="txt_field1"><label >Content</label></div>
+                    
                     <textarea type="text" value={note.content} id="content" /////////////
                     name="content" required rows="10" onChange={onChangeInput} />
                 </div>
 
-                <label htmlFor="date">Date: {note.date} </label>
-                <div className="row">
+                
+                <div className="txt_field" >
                     <input type="date" id="date"
                     name="date" onChange={onChangeInput} />
+                    <label >Date: {note.date} </label>
                 </div>
 
-                <button type="submit">Save</button>
+                <input type="submit" value="Save"/>
             </form>
         </div>
     )

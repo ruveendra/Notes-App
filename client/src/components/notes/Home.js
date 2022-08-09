@@ -39,15 +39,15 @@ import axios from 'axios'
         <div className="note-wrapper">
             {
                 notes.map(note =>(
-                    <div className="card" key={note._id}>
+                    <div className="cardi" key={note._id}>
                         <h4 title={note.title}>{note.title}</h4>
-                        <div className="text-wrapper">
+                        <div className="text-wrapperi">
                             <p>{note.content}</p>
                         </div>
                         <p className="date">{format(note.date)}</p>
-                        <div className="card-footer">
-                            {note.name}
-                            <Link to={`edit/${note._id}`} >Edit</Link>
+                        <div className="cardi-footer">
+                            Note
+                            <Link class="navbar-brand " to={`edit/${note._id}`} >Edit</Link>
                         </div>
                         <button className="close" 
                         onClick={() => deleteNote(note._id)} >X</button>

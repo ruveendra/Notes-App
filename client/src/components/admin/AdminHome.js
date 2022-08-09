@@ -165,18 +165,16 @@ function AdminHome() {
 
   return (
     <div>
-      <form class="d-flex" role="search">
+      <form class="content-search" role="search">
         <input
           class="form-control me-2"
           type="search"
           name="search"
-          placeholder="Search"
+          placeholder="Search User"
           aria-label="Search"
           onChange={onChangeInput}
         />
-        <button class="btn btn-outline-success" type="submit">
-          Search
-        </button>
+        
       </form>
 
       <table class="content-table">
@@ -216,7 +214,8 @@ function AdminHome() {
         </tbody>
       </table>
       {show ? <ModalContent /> : null}
-      <button type="button" class="page-btn next-page" onClick ={()=>previousPage()}>previous</button>
+      
+      
       <div>
         {/* {indents.map((j)=>(
         <button type="button" class="page-btn"  >
@@ -226,7 +225,12 @@ function AdminHome() {
 
         ))} */}
       </div>
-      <button type="button" class="page-btn next-page" onClick ={()=>nextPage()}>next</button>
+      
+      <button type="button" class="content-button2 " onClick ={()=>nextPage()}>next</button>
+      <div>
+      <button type="button" class="content-button2" onClick ={()=>previousPage()}>previous</button>
+      </div>
+
     </div>
   );
 }
