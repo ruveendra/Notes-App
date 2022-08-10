@@ -10,6 +10,8 @@ router.post("/login", userCtrl.loginUser);
 router.put("/update",auth, userCtrl.updateUser);
 //Get Users
 router.get("/", userCtrl.getUsers);
+//Get Users
+router.get("/search", userCtrl.getSearchUsers);
 //Get User
 router.get("/:id", userCtrl.getUser);
 //Verify token

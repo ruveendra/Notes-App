@@ -5,34 +5,36 @@ import Notes from "./components/Notes";
 import Admin from "./components/Admin";
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isLogin, setIsLogin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  useEffect(() =>{
-    const checkLogin = async () =>{
-      const token = localStorage.getItem('tokenStore')
-      if(token){
-        const verified = await axios.get('/users/verify',{
-          headers:{ Authorization: token}
-        })
-        console.log(verified)
-        setIsLogin(verified.data)
-        if(verified.data === false) return localStorage.clear()
-      }else{
-        setIsLogin(false)
+  useEffect(() => {
+    const checkLogin = async () => {
+      const token = localStorage.getItem("tokenStore");
+      if (token) {
+        const verified = await axios.get("/users/verify", {
+          headers: { Authorization: token },
+        });
+        console.log(verified);
+        setIsLogin(verified.data);
+        if (verified.data === false) return localStorage.clear();
+      } else {
+        setIsLogin(false);
       }
-    }
-    checkLogin()
-  },[])
-  
+    };
+    checkLogin();
+  }, []);
+
   return (
     <div className="App">
-      {isLogin && isAdmin === false ? <Notes setIsLogin={setIsLogin} /> : isLogin && isAdmin  ? <Admin setIsLogin={setIsLogin} setIsAdmin={setIsAdmin} />: <Login setIsLogin={setIsLogin} setIsAdmin={setIsAdmin}/>}
-      
-      
+      {isLogin && isAdmin === false ? (
+        <Notes setIsLogin={setIsLogin} />
+      ) : isLogin && isAdmin ? (
+        <Admin setIsLogin={setIsLogin} setIsAdmin={setIsAdmin} />
+      ) : (
+        <Login setIsLogin={setIsLogin} setIsAdmin={setIsAdmin} />
+      )}
     </div>
-
-    
   );
 }
 
