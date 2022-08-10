@@ -42,11 +42,9 @@ Packages
 
 Possible Errors
 
--On refresh the web page will direct you back to the login page, since the verify token route is broken. possibly due to caching beacuse I get the error on postman even when the route is commented.
+-On refresh the webpage will direct you back to the login page. This is because when returning the status of the token sometimes route breaks. possibly due to caching beacuse the error is present even when the relevant back-end function is commented.
 
--There is always room for improvments in the UI/UX of the application
-
--Pagination buttons need some work (it is somewhat buggy)
+-Pagination buttons need some work 
 
 
 
