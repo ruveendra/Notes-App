@@ -29,7 +29,7 @@ How to run the project:
 1) Go to the project directory and run the command "npm dev start" to run the development server of the node application (Back End)
 2) Go to the project directory {"project file name"}/client and run the command "npm start" to run the development server of the react application (Front End)
 3) Once the react server starts you will be directed to the login page of the web application. 
-4) In order to add a new admin go to directory {"project file name"}/seeder and open the file and add the admin cridentials using a text editor and run the command "node seederAdmin.js"
+4) In order to add a new admin go to directory {"project file name"}/seeder and open the file and add the admin cridentials using a text editor and run the command "node seederAdmin.js" within the directory
 
 
 
