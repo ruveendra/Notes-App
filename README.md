@@ -39,16 +39,14 @@ Packages
 
 -Node: bcrypt, cors, dotenv, express, jsonwebtoken, mongoose
 
-Additional
-
--There is always room for improvments in the UI/UX of the application
-
--Pagination buttons need some work (it is somewhat buggy)
-
 
 Possible Errors
 
 -On refresh the web page will direct you back to the login page, since the verify token route is broken. possibly due to caching beacuse I get the error on postman even when the route is commented.
+
+-There is always room for improvments in the UI/UX of the application
+
+-Pagination buttons need some work (it is somewhat buggy)
 
 
 
