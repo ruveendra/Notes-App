@@ -15,16 +15,13 @@ const noteCtrl = {
   createNote: async (req, res) => {
     try {
       const { title, content, date } = req.body;
-      //res.json({ user_id: req.user.id, name: req.user.name });
       const newNote = new Notes({
         title,
         content,
         date,
         user_id: req.user.id,
-        
       });
       await newNote.save();
-      //res.json(newNote);
       res.json({ msg: "Created a Note" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });

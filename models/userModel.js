@@ -28,7 +28,6 @@ const userSchema = new mongoose.Schema(
     mobile: {
       type: String,
       required: true,
-      
     },
     accountType: {
       type: String,
@@ -38,9 +37,7 @@ const userSchema = new mongoose.Schema(
     status: {
       type: Boolean,
       required: true,
-      
     },
-    
   },
   {
     timestamps: true,

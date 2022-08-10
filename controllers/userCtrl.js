@@ -79,39 +79,34 @@ const userCtrl = {
 
   getUsers: async (req, res) => {
     try {
-      
-      const page = parseInt(req.query.page)
-      const limit = parseInt(req.query.limit)
-      
+      const page = parseInt(req.query.page);
+      const limit = parseInt(req.query.limit);
 
       //const users = await Users.find();
-      const startIndex = (page - 1) * limit
-      const endIndex = page * limit
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
 
-      const results = {}
+      const results = {};
       const users = await Users.find();
 
-      results.pageCount = Math.ceil((users.length + 1)/limit)
+      results.pageCount = Math.ceil((users.length + 1) / limit);
       //change here ZZ
 
-      if(endIndex < users.length ) {
+      if (endIndex < users.length) {
         results.next = {
-          page: page +1,
-          limit: limit
-        }
-
+          page: page + 1,
+          limit: limit,
+        };
       }
 
-      if(startIndex > 0 ) {
+      if (startIndex > 0) {
         results.previous = {
-          page: page -1,
-          limit: limit
-        }
-
+          page: page - 1,
+          limit: limit,
+        };
       }
-      
-      
-      results.results = users.slice(startIndex,endIndex)
+
+      results.results = users.slice(startIndex, endIndex);
       res.json(results);
 
       //res.json(notes);
@@ -122,12 +117,9 @@ const userCtrl = {
 
   getSearchUsers: async (req, res) => {
     try {
-      
       const users = await Users.find();
-      
 
       res.json(users);
-
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
@@ -150,7 +142,7 @@ const userCtrl = {
       jwt.verify(token, process.env.TOKEN_SECRET, async (err, verified) => {
         if (err) return res.send(false);
 
-        const user = await Users.findById(verified.id );
+        const user = await Users.findById(verified.id);
         if (!user) return res.send(false);
 
         return res.send(true);
