@@ -51,6 +51,8 @@ Possible Errors
 
 -On refresh the webpage will direct you back to the login page. This is because when returning the status of the token sometimes route breaks. possibly due to caching beacuse the error is present even when the relevant back-end function is commented.
 
+(* The above issue can be fixed by rearranging the "router.get("/verify", userCtrl.verifiedToken);" route above the "router.get("/:id", userCtrl.getUser);" route in the userRouter.js file.)
+
 -Pagination buttons need some work 
 
 
