@@ -32,7 +32,7 @@ How to run the project:
 4) In order to add a new admin go to directory {"project file name"}/seeder and open the file and add the admin cridentials using a text editor and run the command "node seederAdmin.js" within the directory
 
 Student account credentials:
-email-example13@gmail.com
+email- example13@gmail.com
 password-123
 
 Admin account credentials:
